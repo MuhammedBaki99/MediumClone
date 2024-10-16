@@ -1,0 +1,35 @@
+header {
+  padding:7px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #F2F2F2;
+  svg{
+    stroke: #6B6B6B;
+  }
+}
+.login {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  .userPP{
+    background: #6E1C91;
+    width: 32px;
+    height: 32px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    text-transform: capitalize;
+  }
+}
+
+.write {
+  display: flex; 
+  align-items: center;
+  gap: 10px;
+  color: #6B6B6B;
+
+}
