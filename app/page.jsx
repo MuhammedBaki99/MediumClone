@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server"; 
 import CommentList from "./commentlist/commentlist";
 import LikeBtnPost from "./likebtn/like";
-import Favorites from "./favorites/favori";
+import Favorites from "./favoritesform/favori";
 import Link from "next/link";
 import CommentsForm from "./commentsform/commentsform";
 

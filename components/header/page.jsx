@@ -2,6 +2,7 @@ import Write, { Notification } from "@/app/svgfiles/svg";
 import { createClient } from "@/utils/supabase/server";
 import "./header.css"
 import Link from "next/link";
+import Dropdown from "./dropdownmenu";
 
 export default async function Header() {
   const supabase = createClient();
@@ -20,7 +21,7 @@ export default async function Header() {
             <p>Yaz</p>
           </Link>
           <Notification />
-          <p className="userPP">{user.email[0]}</p>
+          <Dropdown user={user} />
         </div> : ""
       }
     </header>
