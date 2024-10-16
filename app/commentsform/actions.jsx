@@ -4,17 +4,12 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 
-export async function commentSave(prevState, formData) {
-  console.log("test");
-  console.log("test");
-
-  const content = formData.get("content");
+export async function commentSave(prevState, formData) { 
 
   const formObj = Object.fromEntries(formData);
+  const content = formData.get("content");
   const commentId = Number(formObj.commentId);
-  
-console.log(commentId);
-
+ 
   const errors = {
     content: !formObj.content && "Yazı alanı boş olamaz",
   };
@@ -30,18 +25,17 @@ console.log(commentId);
 
   if (!user) {
     redirect("/login");
-  } 
+  }
   const { data, error } = await supabase
     .from('comments')
     .insert([
       { content, user_id: user.id, post_id: commentId },
     ])
     .select()
-    .single(); 
-
+    .single();
+    
   if (error) {
     console.log(error + "asd");
   }
-
-  redirect("/");
+  redirect("/")
 }
