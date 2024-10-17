@@ -50,3 +50,72 @@ a {
   text-decoration: none;
   color: inherit;
 }
+button {
+  cursor: pointer;
+}
+
+.likebtn {
+  width: 50px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #6b6b6b;
+
+  svg {
+    width: 15px;
+  }
+
+}
+
+.favoriBtn {
+  width: 50px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #6b6b6b;
+
+  svg {
+    width: 15px;
+  }
+
+}
+
+.commentsBtn {
+  width: 50px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #6b6b6b;
+
+  svg {
+    width: 20px;
+  }
+
+}
+
+.postBtns {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Home Codes Start */
+
+.postList {
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.postItem {
+  border-bottom: solid 1px #F2F2F2;
+  padding-block: 20px;
+}
+
+
+/* Home Codes End */
