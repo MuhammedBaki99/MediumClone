@@ -30,7 +30,7 @@ export async function postSave(prevState, formData) {
   console.log(user);
 
   if (!user) {
-    redirect("/login");
+    redirect("/loginsignup");
   }
   const { data, error } = await supabase
     .from('posts')
