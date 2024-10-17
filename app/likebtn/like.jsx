@@ -1,73 +1,175 @@
 "use client"
 import { useEffect, useState } from "react";
-import { likeBtnComments, likeBtnPosts } from "./actions";
-import { useFormState } from "react-dom"
 import { createClient } from "@/utils/supabase/client";
 import { Clap } from "../svgfiles/svg";
 
 export default function LikeBtnPost({ id }) {
-  const [likespost, setLikePost] = useState(0);
-
-  const [state, action] = useFormState(likeBtnPosts, {
-    message: null,
-    error: null,
-  })
+  const supabase = createClient();
+  const [likespost, setLikePost] = useState(false);
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function getPostLike() {
-      const supabase = createClient();
       let { data: postLike, error } = await supabase
         .from('postLike')
         .select('*')
         .eq("post_id", id)
-      setLikePost(postLike.length)
-    }
-    getPostLike()
+        .eq("user_id", user?.id)
 
-  }, [likespost]);
+      let { data: postLikes, errors } = await supabase
+        .from('postLike')
+        .select('*')
+        .eq("post_id", id)
+
+      setCount(postLikes?.length);
+
+
+      console.log(postLike, "aaaaa");
+
+      if (postLike?.length > 0) {
+        setLikePost(true);
+      }
+    }
+    getPostLike();
+  }, [id, user, likespost]);
+
+
+
+  useEffect(() => {
+    async function getPostLike() {
+      let { data: postLike, error } = await supabase
+        .from('postLike')
+        .select('*')
+        .eq("post_id", id)
+
+      if (postLike?.length > 0) {
+        setLikePost(true);
+      }
+    }
+    getPostLike();
+  }, [id, user]);
+
+  useEffect(() => {
+    async function getUser() {
+      let { data: { user }, error } = await supabase.auth.getUser();
+      setUser(user);
+    }
+    getUser();
+  }, []);
+
+  async function dislike() {
+    const { error } = await supabase
+      .from('postLike')
+      .delete()
+      .eq("user_id", user?.id)
+      .eq("post_id", id);
+
+
+    setLikePost(false);
+  }
+
+  async function like() {
+    const { data, error } = await supabase
+      .from('postLike')
+      .insert([
+        { user_id: user?.id, post_id: id },
+      ])
+      .select()
+      .eq("user_id", user?.id)
+      .eq("post_id", id)
+      .single();
+
+    setLikePost(true);
+  }
 
 
   return (
     <>
-      <form action={action}>
-        <input type="hidden" value={id} name="commentId" />
-        <button type="submit" title={likespost + "likes"} className="likebtn"><Clap /> {likespost}</button>
-      </form>
+      <button onClick={() => likespost ? dislike() : like()} className="likebtn"><Clap  likespost={likespost} /> {count} </button>
     </>
   )
 }
 
 export function LikeBtnComments({ id }) {
-  const [likescomment, setLikeComment] = useState(0);
-  const [state, action] = useFormState(likeBtnComments, {
-    message: null,
-    error: null,
-  })
-  console.log(id);
+  const supabase = createClient();
+  const [likespost, setLikePost] = useState(false);
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function getPostLike() {
-      const supabase = createClient();
-
       let { data: commentsLike, error } = await supabase
         .from('commentsLike')
         .select('*')
         .eq("comment_id", id)
-      setLikeComment(commentsLike?.length)
+        .eq("user_id", user?.id)
+
+      let { data: commentsLikes, errors } = await supabase
+        .from('commentsLike')
+        .select('*')
+        .eq("comment_id", id)
+
+      setCount(commentsLikes?.length);
+
+
+      console.log(commentsLike, "aaaaa");
+
+      if (commentsLike?.length > 0) {
+        setLikePost(true);
+      }
     }
     getPostLike();
+  }, [id, user, likespost]);
 
+  useEffect(() => {
+    async function getPostLike() {
+      let { data: commentsLike, error } = await supabase
+        .from('commentsLike')
+        .select('*')
+        .eq("comment_id", id)
 
-  }, [likescomment]);
+      if (commentsLike?.length > 0) {
+        setLikePost(true);
+      }
+    }
+    getPostLike();
+  }, [id, user]);
 
-  console.log(likescomment + "asdasd");
+  useEffect(() => {
+    async function getUser() {
+      let { data: { user }, error } = await supabase.auth.getUser();
+      setUser(user);
+    }
+    getUser();
+  }, []);
+
+  async function dislike() {
+    const { error } = await supabase
+      .from('commentsLike')
+      .delete()
+      .eq("user_id", user?.id)
+      .eq("comment_id", id);
+    setLikePost(false);
+  }
+
+  async function like() {
+    const { data, error } = await supabase
+      .from('commentsLike')
+      .insert([
+        { user_id: user?.id, comment_id: id },
+      ])
+      .select()
+      .eq("user_id", user?.id)
+      .eq("comment_id", id)
+      .single();
+    setLikePost(true);
+  }
+
 
   return (
     <>
-      <form action={action}>
-        <input type="hidden" value={id} name="commentId" />
-        <button type="submit"   className="likebtn"><Clap />  {likescomment}</button>
-      </form>
+      <button onClick={() => likespost ? dislike() : like()} className="likebtn"><Clap   likespost={likespost} /> {count} </button>
     </>
   )
 }
