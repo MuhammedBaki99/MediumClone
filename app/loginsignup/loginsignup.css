@@ -1,0 +1,64 @@
+.loginsignup {
+  width: 100%;
+  height: 848px; 
+  margin: 0 auto;
+  display: flex; 
+  position: relative; 
+}
+
+.bgSquare {
+  z-index: -1;
+  position: absolute;
+  background: transparent;
+  width: 50%;
+  height: 848px; 
+}
+
+.logindesc {
+  position: absolute;
+  background: rgba(236, 212, 160, 0.719);
+  width: 50%;
+  height: 848px; 
+  transition: all .3s;
+  right: 0; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: justify;
+  svg{
+    width: 500px; 
+    height: 500px;
+  }
+  p{
+    width: 60%;
+    font-weight: 700;
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+  }
+}
+.signupdesc{
+  position: absolute;
+  background: rgba(236, 212, 160, 0.719);
+  width: 50%;
+  height: 100%;
+  transition: all .3s;
+  left: 0; 
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: justify;
+  svg{
+    width: 500px; 
+    height: 500px;
+  }
+  p{
+    width: 60%;
+    font-weight: 700;
+    font-style: italic;
+  }
+}
