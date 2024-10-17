@@ -18,7 +18,7 @@ export async function favoritesBtn(prevState, formData) {
 
 
   if (!user) {
-    redirect("/login");
+    redirect("/loginsignup");
   }
 
   console.log(typeof commentId);

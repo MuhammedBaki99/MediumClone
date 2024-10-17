@@ -18,7 +18,7 @@ export async function likeBtnPosts(prevState, formData) {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect("/login");
+    redirect("/loginsignup");
   }
 
   const { data, error } = await supabase
@@ -56,7 +56,7 @@ export async function likeBtnComments(prevState, formData) {
 
 
   if (!user) {
-    redirect("/login");
+    redirect("/loginsignup");
   }
 
   console.log(typeof commentId);

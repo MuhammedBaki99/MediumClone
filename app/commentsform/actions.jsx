@@ -24,7 +24,7 @@ export async function commentSave(prevState, formData) {
 
 
   if (!user) {
-    redirect("/login");
+    redirect("/loginsignup");
   }
   const { data, error } = await supabase
     .from('comments')

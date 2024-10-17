@@ -10,8 +10,7 @@ export default async function CommentList({ id }) {
     .eq("post_id", id) 
   
   return (
-    <div className="comments">
-      asdasd
+    <div className="comments"> 
       {comments ? comments.map((a, i) => <div key={i} >
         {a.content}
         <LikeBtnComments id={a.id} />
