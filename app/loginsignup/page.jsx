@@ -1,11 +1,10 @@
 "use client"
 
 import "./loginsignup.css"
-import { useState } from "react"
+import { useState } from "react"  
+import { MediumLogo } from "../svgfiles/svg";  
 import LoginPage from "../login/login";
 import SignUp from "../signup/signup";
-import { MediumLogo } from "../svgfiles/svg"; 
-
 export default function LoginSignUp() {
   const [sign, setSign] = useState("login");
   return (

@@ -1,9 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
-import Link from "next/link";
-import LikeBtnPost from "@/app/likebtn/like";
-import Favorites from "@/app/favoritesform/favori";
-import { Comment } from "@/app/svgfiles/svg";
+import LikeBtnPost from "@/app/likebtn/like"; 
 import "./postdetail.css"
+import CommentSide from "@/app/(comments)/commentside/commentside"; 
+import Image from "next/image";
+import Favorites from "@/app/(favorites)/favoritesform/favori";
 export default async function PostDetail({ params }) {
   const id = Number(params.id);
   const supabase = createClient();
@@ -20,21 +20,33 @@ export default async function PostDetail({ params }) {
   let { data: comments } = await supabase
     .from('comments')
     .select('*')
+
+  let { data: commentsid } = await supabase
+    .from('comments')
+    .select('*')
+    .eq("post_id", id)
+  console.log(commentsid + "  asd12312312");
+
+
   return (
     <div className="postList">
       {
         posts ? posts.map((x, i) => (
-          <Link href={"/posts/" + x.id}  key={i}>
-            <div className="postItem">
-              <h4> <span>{user?.email[0]}</span> {user?.email}</h4>
-              <h1>{x.title}</h1>
-              <p>{x.content}</p>
-              <div className="postBtns">
-                <LikeBtnPost id={x.id} />
-                <p className="commentsBtn"><Comment />{comments.length}</p>
-                <Favorites id={x.id} />
-              </div>
-            </div></Link>
+          <div className="postItem">
+            <h4> <span>{user?.email[0]}</span> {user?.email}</h4>
+            <h1>{x.title}</h1>
+            <p>{x.content}</p>
+            <div className="postBtns">
+                <p className="date"><Image width={24} height={24} src={"/img/sparkling.png"} />{new Date(x.created_at).toLocaleDateString('tr-TR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric', 
+                })}</p>
+              <LikeBtnPost id={x.id} />
+              <CommentSide id={id} commentslength={comments.length} commentsid={commentsid} user={user} />
+              <Favorites id={x.id} />
+            </div>
+          </div>
         )) : ""
       }
     </div>
