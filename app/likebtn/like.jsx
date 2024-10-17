@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { likeBtnComments, likeBtnPosts } from "./actions";
 import { useFormState } from "react-dom"
 import { createClient } from "@/utils/supabase/client";
+import { Clap } from "../svgfiles/svg";
 
 export default function LikeBtnPost({ id }) {
   const [likespost, setLikePost] = useState(0);
@@ -30,7 +31,7 @@ export default function LikeBtnPost({ id }) {
     <>
       <form action={action}>
         <input type="hidden" value={id} name="commentId" />
-        <button type="submit">Like {likespost}</button>
+        <button type="submit" title={likespost + "likes"} className="likebtn"><Clap /> {likespost}</button>
       </form>
     </>
   )
@@ -65,7 +66,7 @@ export function LikeBtnComments({ id }) {
     <>
       <form action={action}>
         <input type="hidden" value={id} name="commentId" />
-        <button type="submit">Like {likescomment}</button>
+        <button type="submit"   className="likebtn"><Clap />  {likescomment}</button>
       </form>
     </>
   )
