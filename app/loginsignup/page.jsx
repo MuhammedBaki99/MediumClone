@@ -16,10 +16,10 @@ export default function LoginSignUp() {
       <LoginPage setSign={setSign} sign={sign} />
       {sign === "login" ? <div className="logindesc">
         <MediumLogo />
-        <p>"Fikirlerini ve hikayelerini paylaşarak dünyanın dört bir yanındaki insanlara ilham ver. Medium ile yaz, öğren ve büyü!"</p>
+        <p>Fikirlerini ve hikayelerini paylaşarak dünyanın dört bir yanındaki insanlara ilham ver. Medium ile yaz, öğren ve büyü!</p>
       </div> : <div className="signupdesc">
         <MediumLogo />
-        <p>"Medium'a katılarak, fikirlerini geniş bir kitleye ulaştır ve kendi hikayeni yazmaya başla. Ücretsiz üye ol ve topluluğun bir parçası ol!"</p>
+        <p>Mediuma katılarak, fikirlerini geniş bir kitleye ulaştır ve kendi hikayeni yazmaya başla. Ücretsiz üye ol ve topluluğun bir parçası ol!</p>
       </div>}
       <SignUp setSign={setSign} sign={sign} />
     </div>
