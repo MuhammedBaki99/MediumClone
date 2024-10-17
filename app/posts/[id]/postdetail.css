@@ -1,0 +1,33 @@
+.postItem {
+  border: none;
+
+  h4{
+    color: #6b6b6b;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-block: 20px;
+
+    span{
+      display: block;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      background: #6E1C91;
+      color: white;
+
+    }
+  }
+}
+
+
+.postBtns {
+  border: none;
+  border-bottom: 1px solid #F2F2F2;
+  border-top: 1px solid #F2F2F2;
+  margin-top: 20px;
+  padding-block: 10px;
+}
