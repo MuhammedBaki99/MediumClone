@@ -8,12 +8,8 @@ import { signOut } from "@/app/signup/actions";
 export default function Dropdown({ user }) {
   const [open, setOpen] = useState(false);
 
-  function handleClick() {
-    if (open) {
-      setOpen(false);
-    } else {
-      setOpen(true);
-    }
+  function handleClick() { 
+    setOpen(!open)
   }
 
   return (

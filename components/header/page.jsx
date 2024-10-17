@@ -9,13 +9,13 @@ export default async function Header() {
   const { data: { user } } = await supabase.auth.getUser();
   console.log("asdsad" + user);
   return (
-    <header>
-      <div className="headerHead">
+    <header style={{justifyContent: `${user ?"space-between": "center"  }`}}>
+      <div className="headerHead" >
         <Link href={"/"}>  <h1>Medium</h1></Link>
       </div>
 
       {
-        user ? <div className="login">
+        user ? <div className="userpp">
           <Link href={"/newpost"} className="write">
             <Write />
             <p>Yaz</p>
