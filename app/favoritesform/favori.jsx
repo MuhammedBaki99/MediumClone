@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { favoritesBtn } from "./actions";
 import { useFormState } from "react-dom"
 import { createClient } from "@/utils/supabase/client";
+import { FavoritesBtn } from "../svgfiles/svg";
 
 export default function Favorites({ id }) {
   const [favori, setFavori] = useState(0);
@@ -30,7 +31,7 @@ export default function Favorites({ id }) {
     <>
       <form action={action}>
         <input type="hidden" value={id} name="commentId" />
-        <button type="submit">Favori {favori}</button>
+        <button type="submit" className="favoriBtn"><FavoritesBtn /> {favori}</button>
       </form>
     </>
   )
