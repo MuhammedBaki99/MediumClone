@@ -32,7 +32,7 @@ export default async function PostDetail({ params }) {
     <div className="postList">
       {
         posts ? posts.map((x, i) => (
-          <div className="postItem">
+          <div className="postItem" key={i}>
             <h4> <span>{user?.email[0]}</span> {user?.email}</h4>
             <h1>{x.title}</h1>
             <p>{x.content}</p>
